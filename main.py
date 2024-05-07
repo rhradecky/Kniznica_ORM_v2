@@ -14,8 +14,14 @@ from author import Author
 @main.route('/authors', methods=['GET'])
 def geAuthors():
     authors = Author.query.all()
-    return Authors
+    author_list = [Author.to_dict() for author in authors]
+    return jsonify(authors_list)
 
+@main.route('/authors', methods=['GET'])
+def geAuthors():
+    authors = Author.query.all()
+    author_list = [Author.to_dict() for author in authors]
+    return jsonify(authors_list)
 
 
 
