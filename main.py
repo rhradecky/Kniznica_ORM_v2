@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -9,9 +9,9 @@ main.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(main)
 
 #from models.Author import Author
-from model.author import Author
+from author import Author
 
-@app.route('/authors', methods=['GET'])
+@main.route('/authors', methods=['GET'])
 def geAuthors():
     authors = Author.query.all()
     return Authors
@@ -31,4 +31,4 @@ def geAuthors():
 
 
 if __name__ == '__main__':
-    app.run()
+    main.run()
