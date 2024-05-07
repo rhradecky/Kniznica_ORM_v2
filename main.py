@@ -42,9 +42,6 @@ def add_authors():
 
 
 
-
-
-
 from members import Members
 @main.route('/members', methods=['GET'])
 def geMembers():
