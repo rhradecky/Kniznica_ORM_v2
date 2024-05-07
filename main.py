@@ -14,14 +14,46 @@ from author import Author
 @main.route('/authors', methods=['GET'])
 def geAuthors():
     authors = Author.query.all()
-    author_list = [Author.to_dict() for author in authors]
+    authors_list = [author.to_dict() for author in authors]
     return jsonify(authors_list)
 
-@main.route('/authors', methods=['GET'])
-def geAuthors():
-    authors = Author.query.all()
-    author_list = [Author.to_dict() for author in authors]
-    return jsonify(authors_list)
+@main.route('/authors/<int:id>')
+def get_author(id):
+    author = Author.query.get(id)
+    return jsonify(author.to_dict()), 200
+
+
+@main.route('/authors/add', methods=['POST'])
+def add_authors():
+    print(request)
+    new_authors = {
+        'author_id': author[-1]['author_id'] + 1,
+        'name': request.json['name'],
+        'bio': request.json['bio']
+    }
+    author.append(new_authors)
+    return jsonify(new_authors), 201
+
+
+
+
+
+
+
+
+
+
+
+
+from members import Members
+@main.route('/members', methods=['GET'])
+def geMembers():
+    members = Members.query.all()
+    members_list = [Member.to_dict() for mem in members]
+    return jsonify(members_list)
+
+
+
 
 
 
@@ -37,4 +69,4 @@ def geAuthors():
 
 
 if __name__ == '__main__':
-    main.run()
+    main.run(debug=True)
