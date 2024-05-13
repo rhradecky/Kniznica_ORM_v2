@@ -72,7 +72,16 @@ def add_books():
 
 
 
+@app.route('/books/delete/<int:book_id>', methods=['DELETE'])
+def delete_book(book_id):
+    book = Book.query.get(book_id)
 
+    if book:
+        db.session.delete(book)
+        db.session.commit()
+        return jsonify({'message': 'Book deleted successfully'}), 200
+    else:
+         return jsonify({'error': 'Book not found'}), 404
 
 
 
