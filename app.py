@@ -79,9 +79,9 @@ def delete_book(book_id):
     if book:
         db.session.delete(book)
         db.session.commit()
-        return jsonify({'message': 'Book deleted successfully'}), 200
+        return jsonify({'message': 'Kniha vymazana'}), 200
     else:
-         return jsonify({'error': 'Book not found'}), 404
+         return jsonify({'error': 'Kniha nenajdena'}), 404
 
 
 
