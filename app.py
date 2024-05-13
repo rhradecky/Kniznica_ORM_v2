@@ -10,6 +10,11 @@ db = SQLAlchemy(app)
 
 #from models.Author import Author
 from author import Author
+@app.route('/')
+def command_list():
+    return ('<big>Zoznam dostupnych prikazov<small><BR>/authors <BR>/authors/ID <BR>/authors/add <BR>')
+
+
 
 @app.route('/authors', methods=['GET'])
 def geAuthors():
