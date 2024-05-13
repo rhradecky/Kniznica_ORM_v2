@@ -1,4 +1,4 @@
-from main import db
+from app import db
 
 class Author(db.Model):
     __tablename__ = "authors"

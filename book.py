@@ -1,4 +1,4 @@
-from main import db
+from app import db
 
 class Book(db):
     __tablename__ = 'books'
