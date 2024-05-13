@@ -1,6 +1,8 @@
 from app import db
+#from author import Author
 
-class Book(db):
+
+class Book(db.Model):
     __tablename__ = 'books'
 
     book_id = db.Column(db.Integer, primary_key=True)
@@ -12,4 +14,17 @@ class Book(db):
     copies = db.Column(db.Integer, default=1)
 
     author = db.relationship("Author", back_populates="books")
-    genre = db.relationship("Genre", back_populates="books")
+    genre = db.relationship("Genre", backref="books")
+
+
+    def to_dict(self):
+        return {
+            "book_id" : self.book_id,
+            "title" : self.title,
+            "author_id": self.author_id,
+            "genre_id": self.genre_id,
+            "isbn": self.isbn,
+            "publication_year": self.publication_year,
+            "copies": self.copies
+            }
+
