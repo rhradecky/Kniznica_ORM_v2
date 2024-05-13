@@ -66,10 +66,20 @@ def add_books():
     new_book = Book(title=request.json['title'],author_id = request.json['author_id'],genre_id =  request.json['genre_id'],isbn =  request.json['isbn'],publication_year = request.json['publication_year'],copies = request.json['copies'])
     db.session.add(new_book)
     db.session.commit()
-    print(new_book)
     return jsonify(new_book.to_dict()), 201
 
 
+@app.route('/books/update/<int:book_id>', methods=['PUT'])
+def update_book(book_id):
+    book = Book.query.get(book_id)
+    if book:
+        book.title = request.json.get('title', book.title)
+        book.author = request.json.get('author', book.author)
+
+        db.session.commit()  # Uloženie zmien do databázy
+        return jsonify({'message': 'Book updated successfully'}), 200
+    else:
+        return jsonify({'error': 'Book not found'}), 404
 
 
 @app.route('/books/delete/<int:book_id>', methods=['DELETE'])
