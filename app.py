@@ -34,14 +34,6 @@ def add_authors():
     author.append(new_authors)
     return jsonify(new_authors), 201
 
-
-
-
-
-
-
-
-
 from members import Members
 @app.route('/members', methods=['GET'])
 def geMembers():
@@ -55,9 +47,8 @@ def geMembers():
 
 
 
-#from models.User import User
-#@app.route('/users', methods=['GET'])
-#def getUsers
+
+
 
 
 
